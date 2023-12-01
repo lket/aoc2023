@@ -1,6 +1,7 @@
 (ns aoc2023.day1
   (:require [clojure.string :as str])
-  (:require [clojure.java.io :as io]))
+  (:require [clojure.java.io :as io])
+  (:require [aoc2023.util :as u]))
 
 (def words {
             "one" 1
@@ -13,8 +14,6 @@
             "eight" 8
             "nine" 9})
 
-(defn str->int [str] (Integer/parseInt str))
-(defn char->int [char] (Character/digit char 10))
 
 (defn replace-first-word [line]
   (str/replace-first line #"(?<!\d\S*)(one|two|three|four|five|six|seven|eight|nine)"
@@ -30,30 +29,23 @@
       replace-first-word
       replace-last-word))
 
-(defn parse
-  [filename]
-  (-> filename
-       io/resource
-       slurp
-       (str/split #"\n")))
-
 (defn part1 [filename]
   (->> filename
-       parse
-       (map #(map char->int %))
+       u/load-input
+       (map #(map u/char->int %))
        (map #(filter pos-int? %))
        (map #(str (first %) (last %)))
-       (map str->int)
+       (map u/str->int)
        (apply +)))
 
 (defn part2 [filename]
   (->> filename
-       parse
+       u/load-input
        (map replace-words)
-       (map #(map char->int %))
+       (map #(map u/char->int %))
        (map #(filter pos-int? %))
        (map #(str (first %) (last %)))
-       (map str->int)
+       (map u/str->int)
        (apply +)))
 
 (part1 "day1_input")
