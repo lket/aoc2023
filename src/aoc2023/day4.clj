@@ -6,19 +6,20 @@
 
 (defn parse-row [row]
   (let [card (u/str->int (re-find #"\d+" row))
-        [w my] (map #(map u/str->int (re-seq #"\d+" %)) (str/split (second (str/split row #":")) #"\|"))]
+        [w my] (map #(map u/str->int (re-seq #"\d+" %))
+                    (str/split (second (str/split row #":")) #"\|"))]
     [card w my]))
 
 (defn mapify-rows [rows]
   (reduce (fn [result [card w my]]
-            (assoc result card (int (math/floor (count (find-common [card w my]))))))
+            (assoc result card (count (find-common [card w my]))))
           {} rows))
 
 (defn find-common [[card w my]]
   (clojure.set/intersection (set w) (set my)))
 
 (defn winnings [common]
-  (int (math/floor (math/pow 2 (dec (count common))))))
+  (int (math/pow 2 (dec (count common)))))
 
 (defn get-cards [current wins]
   (range (inc current) (+ 1 current wins)))
