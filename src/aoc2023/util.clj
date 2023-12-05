@@ -5,6 +5,7 @@
             [clojure.java.io :as io]))
 
 (defn str->int [str] (Integer/parseInt str))
+(defn str->long [str] (Long/parseLong str))
 (defn char->int [char] (Character/digit char 10))
 
 (defn load-input
