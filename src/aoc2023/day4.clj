@@ -1,8 +1,8 @@
 (ns aoc2023.day4
-  (:require [clojure.string :as str])
-  (:require [clojure.math :as math])
-  (:require [clojure.java.io :as io])
-  (:require [aoc2023.util :as u]))
+  (:require [clojure.string :as str]
+            [clojure.math :as math]
+            [clojure.java.io :as io]
+            [aoc2023.util :as u]))
 
 (defn parse-row [row]
   (let [card (u/str->int (re-find #"\d+" row))
@@ -10,13 +10,13 @@
                     (str/split (second (str/split row #":")) #"\|"))]
     [card w my]))
 
+(defn find-common [[card w my]]
+  (clojure.set/intersection (set w) (set my)))
+
 (defn mapify-rows [rows]
   (reduce (fn [result [card w my]]
             (assoc result card (count (find-common [card w my]))))
           {} rows))
-
-(defn find-common [[card w my]]
-  (clojure.set/intersection (set w) (set my)))
 
 (defn winnings [common]
   (int (math/pow 2 (dec (count common)))))

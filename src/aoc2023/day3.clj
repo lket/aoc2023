@@ -1,7 +1,7 @@
 (ns aoc2023.day3
-  (:require [clojure.string :as str])
-  (:require [clojure.java.io :as io])
-  (:require [aoc2023.util :as u]))
+  (:require [clojure.string :as str]
+            [clojure.java.io :as io]
+            [aoc2023.util :as u]))
 
 (def dirs [[-1 -1] [0 -1] [1 -1]
            [-1 0]         [1 0]

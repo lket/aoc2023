@@ -1,8 +1,8 @@
 (ns aoc2023.day5
-  (:require [clojure.string :as str])
-  (:require [clojure.math :as math])
-  (:require [clojure.java.io :as io])
-  (:require [aoc2023.util :as u]))
+  (:require [clojure.string :as str]
+            [clojure.math :as math]
+            [clojure.java.io :as io]
+            [aoc2023.util :as u]))
 
 ;; TODO: make an actual solution for part 2
 

@@ -2,7 +2,9 @@
   "Utils for AOC2023"
   (:require [clojure.string :as str]
             [clojure.pprint :as p]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [ubergraph.core :as uber]
+            [ubergraph.alg :as alg]))
 
 (defn str->int [str] (Integer/parseInt str))
 (defn str->long [str] (Long/parseLong str))
